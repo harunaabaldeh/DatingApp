@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace DatingApp.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
         private readonly DataContext _context;
