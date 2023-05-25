@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using API.Controllers;
 using API.DTOs;
 using API.Entities;
@@ -24,7 +25,7 @@ namespace DatingApp.Controllers
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
             var users = await _userRepository.GetMembersAsync();
-            
+
             return Ok(users);
         }
 
@@ -33,6 +34,21 @@ namespace DatingApp.Controllers
         {
             return await _userRepository.GetMemberAsync(username);
 
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
+        {
+            var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var user = _userRepository.GetUserByUsernameAsync(username);
+
+            if (user == null) return NotFound();
+
+            await _mapper.Map(memberUpdateDto, user);
+
+            if (await _userRepository.SaveAllAsync()) return NoContent();
+
+            return BadRequest("Failed to update user");
         }
     }
 }
