@@ -40,11 +40,11 @@ namespace DatingApp.Controllers
         public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
         {
             var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var user = _userRepository.GetUserByUsernameAsync(username);
+            var user = await _userRepository.GetUserByUsernameAsync(username);
 
             if (user == null) return NotFound();
 
-            await _mapper.Map(memberUpdateDto, user);
+            _mapper.Map(memberUpdateDto, user);
 
             if (await _userRepository.SaveAllAsync()) return NoContent();
 

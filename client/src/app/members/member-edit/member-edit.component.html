@@ -3,7 +3,7 @@
     <h1>Your profile</h1>
   </div>
   <div class="col-8">
-    <div class="alert alert-info" *ngIf="editForm.dirty">
+    <div class="alert alert-info pb-0" *ngIf="editForm.dirty">
       <p>
         <strong>Information: </strong>You have made changes. Any unused changes
         will be lost
@@ -37,7 +37,14 @@
       </div>
 
       <div class="card-footer">
-        <button type="submit" [disabled]="!editForm.dirty" form="editForm" class="btn btn-success col-12">Save Changes</button>
+        <button
+          type="submit"
+          [disabled]="!editForm.dirty"
+          form="editForm"
+          class="btn btn-success col-12"
+        >
+          Save Changes
+        </button>
       </div>
     </div>
   </div>
@@ -72,13 +79,15 @@
             <label for="city">City:</label>
             <input
               type="text"
-              [(ngModel)]="member.city" name="city"
+              [(ngModel)]="member.city"
+              name="city"
               class="form-control mx-2"
             />
             <label for="city">Country:</label>
             <input
               type="text"
-              [(ngModel)]="member.country" name="country"
+              [(ngModel)]="member.country"
+              name="country"
               class="form-control mx-2"
             />
           </div>
