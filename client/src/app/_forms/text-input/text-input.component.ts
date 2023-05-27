@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Self } from '@angular/core';
+import { Component, Input, Self } from '@angular/core';
 import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
 
 @Component({
@@ -13,13 +13,12 @@ export class TextInputComponent implements ControlValueAccessor {
   constructor(@Self() public ngControl: NgControl) {
     this.ngControl.valueAccessor = this;
   }
+
   writeValue(obj: any): void {}
 
   registerOnChange(fn: any): void {}
 
   registerOnTouched(fn: any): void {}
-
-  setDisabledState?(isDisabled: boolean): void {}
 
   get control(): FormControl {
     return this.ngControl.control as FormControl;

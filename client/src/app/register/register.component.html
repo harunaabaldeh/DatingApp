@@ -5,12 +5,15 @@
   <app-text-input
     [formControl]="$any(registerForm.controls['username'])"
     [label]="'Username'"
+    [type]="'text'"
   ></app-text-input>
+
   <app-text-input
-    [formControl]="$any(registerForm.controls['passoword'])"
+    [formControl]="$any(registerForm.controls['password'])"
     [label]="'Password'"
     [type]="'password'"
   ></app-text-input>
+
   <app-text-input
     [formControl]="$any(registerForm.controls['confirmPassword'])"
     [label]="'Confirm Password'"
